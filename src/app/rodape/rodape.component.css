@@ -1,0 +1,30 @@
+.bg-person{
+    background-color: rgb(226, 196, 255) !important;
+}
+a {
+    color: black;
+}
+a:hover{
+    color:rgb(121, 34, 202);
+}
+
+ul.social-network{
+    list-style: none;
+    padding: 0%;
+}
+
+ul.social-network li{
+    display: inline;
+    margin: 0;
+    padding: 7px;
+}
+
+.fa {
+    font-size: 25pt;
+    padding: 10px;
+}
+
+.fa-envelope-o{
+    font-size: 13pt;
+}
+

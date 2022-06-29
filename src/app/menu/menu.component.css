@@ -1,0 +1,14 @@
+.bg-person{
+    background-color: rgb(226, 196, 255) !important;
+}
+
+.fs-13{
+    font-size: 13pt;
+}
+
+a {
+    color: black;
+}
+a:hover{
+    color:rgb(121, 34, 202)
+}
