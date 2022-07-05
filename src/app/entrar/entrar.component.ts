@@ -31,8 +31,8 @@ export class EntrarComponent implements OnInit {
       environment.id = this.usuarioLogin.id
 
       this.router.navigate(['/inicio'])
-    }, erro => {
-      if(erro.status == 500){
+    }, erro=> {
+      if(erro.status == 401){
         alert ('Email e/ou senha não coincidem. Digite corretamente!')
       }
     })
