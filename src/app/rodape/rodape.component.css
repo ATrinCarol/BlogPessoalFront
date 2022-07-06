@@ -37,8 +37,4 @@ ul.social-network li {
 .bg-tp{
     background-color: rgba(128, 128, 128, 0.322);
     backdrop-filter: blur(10px);
-
-
-   /* background: linear-gradient(90deg, rgba(25, 0, 36, 1) 0%, rgba(65, 9, 121, 1) 35%, rgba(201, 0, 255, 1) 100%);
-    backdrop-filter: blur(90px)*/
 }
