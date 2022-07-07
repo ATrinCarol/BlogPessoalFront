@@ -21,7 +21,7 @@ export class AuthService {
   entrar(usuarioLogin: UsuarioLogin): Observable<UsuarioLogin> {
     return this.http.post<UsuarioLogin>('https://bloghistoriarte.herokuapp.com/usuarios/logar', usuarioLogin)
   }
-
+ 
   logado(){
 
     let ok: boolean = false

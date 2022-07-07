@@ -17,7 +17,7 @@ export class EntrarComponent implements OnInit {
     private auth: AuthService,
     private router: Router
   ) { }
-
+ 
   ngOnInit() {
     window.scroll(0,0)
   }
