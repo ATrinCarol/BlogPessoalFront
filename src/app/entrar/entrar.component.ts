@@ -37,5 +37,5 @@ export class EntrarComponent implements OnInit {
       }
     }) 
   }
-
+ 
 }

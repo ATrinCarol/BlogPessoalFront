@@ -19,6 +19,6 @@ export class InicioComponent implements OnInit {
      // alert ('Sua sessão expirou. Faça o login novamente!')
       this.router.navigate(['/entrar'])
     }
-  }
+  } 
 
 }
