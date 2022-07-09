@@ -17,12 +17,28 @@ export class TemaService {
     headers: new HttpHeaders().set('Authorization', environment.token)
   }
 
-  getAllTema(): Observable<Tema[]>{
+  getAllTema(): Observable<Tema[]> {
     return this.http.get<Tema[]>('https://bloghistoriarte.herokuapp.com/temas', this.token)
   }
 
-  postTema(tema: Tema): Observable<Tema>{
+  getByIdTema(id: number): Observable<Tema> {
+    return this.http.get<Tema>(`https://bloghistoriarte.herokuapp.com/temas/${id}`, this.token)
+  }
+
+  getByDescricaoTema(descricao: string): Observable<Tema> {
+    return this.http.get<Tema>(`https://bloghistoriarte.herokuapp.com/temas/descricao/${descricao}`, this.token)
+  }
+
+  postTema(tema: Tema): Observable<Tema> {
     return this.http.post<Tema>('https://bloghistoriarte.herokuapp.com/temas', tema, this.token)
   }
 
+  putTema(tema: Tema): Observable<Tema> {
+    return this.http.put<Tema>('https://bloghistoriarte.herokuapp.com/temas', tema, this.token)
   }
+
+  deleteTema(id: number) {
+    return this.http.delete(`https://bloghistoriarte.herokuapp.com/temas/${id}`, this.token)
+  }
+
+}
