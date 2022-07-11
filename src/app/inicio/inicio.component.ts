@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Postagem } from '../model/Postagem';
 import { Tema } from '../model/Tema';
 import { Usuario } from '../model/Usuario';
+import { AuthService } from '../service/auth.service';
 import { PostagemService } from '../service/postagem.service';
 import { TemaService } from '../service/tema.service';
 
@@ -16,6 +17,7 @@ import { TemaService } from '../service/tema.service';
 export class InicioComponent implements OnInit {
 
   postagem: Postagem = new Postagem()
+  listPostagem: Postagem[]
 
   tema: Tema = new Tema()
   listTema: Tema[]
@@ -27,7 +29,8 @@ export class InicioComponent implements OnInit {
   constructor(
     private router: Router,
     private postagemService: PostagemService,
-    private temaService: TemaService
+    private temaService: TemaService,
+    private authService: AuthService
 
   ) { }
 
@@ -39,6 +42,7 @@ export class InicioComponent implements OnInit {
     }
 
     this.findAllTema()
+    this.findAllPostagem()
   }
 
   findAllTema() {
@@ -51,7 +55,18 @@ export class InicioComponent implements OnInit {
     this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema)=>{
       this.tema = resp
     })
+  }
 
+  findAllPostagem(){
+    this.postagemService.getAllPostagem().subscribe((resp: Postagem[])=>{
+      this.listPostagem = resp
+    })
+  }
+
+  findByIdUsuario(){
+    this.authService.getByIdUsuario(this.idUsuario).subscribe((resp: Usuario)=>{
+      this.usuario = resp
+    })
   }
 
   publicar() {
@@ -65,10 +80,9 @@ export class InicioComponent implements OnInit {
       this.postagem = resp
       alert('Sua postagem foi realizada com sucesso')
       this.postagem = new Postagem()
+      this.findAllPostagem()
     })
   }
-
-
 
 }
 
