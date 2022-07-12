@@ -1,0 +1,21 @@
+#img-bg{
+    background-image: url("https://i.imgur.com/kyOy7UI.png");
+    min-width: 395px;
+    min-height: 625px;
+}
+
+.bg-entrar{
+    background-image: url('https://i.imgur.com/fLg9REf.png');
+    margin-top:0px;
+}
+
+.btn-purple{
+    background-color: purple;
+}
+
+a {
+    color:black;
+}
+a:hover{
+    color: purple;
+}
