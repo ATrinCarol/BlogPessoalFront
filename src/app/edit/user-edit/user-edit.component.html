@@ -1,5 +1,10 @@
 <div class="container mt-5 mb-5">
 
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-12">
+            <h1 class="text-center text-purple">Atualizar meu perfil</h1>
+
+
     <div class="row">
         <div class="col-md-12">
             <h1 class="text-center text-purple">Atualizar meu perfil</h1>
@@ -8,6 +13,7 @@
 
     <div class="row d-flex justify-content-center">
         <div class="col-md-10">
+
             <div class="form-group">
                 <label for="nome">Nome</label>
                 <input [(ngModel)]="usuario.nome" class="form-control" type="text" name="nome" id="nome"
@@ -43,9 +49,16 @@
             </div>
             <div class="d-flex justify-content-center p-3">
                 <button class="btn btn-danger text-light mr-4" type="submit" routerLink="/inicio">Cancelar</button>
+
+                <button class="btn btn-purple text-light" type="submit" (click)='atualizar()'>Atualizar</button>
+            </div>
+        </div>
+    </div>
+
                 <button (click)="atualizar()" class="btn btn-purple text-light" type="submit">Atualizar</button>
             </div>
         </div>
     </div>
+
 
 </div>

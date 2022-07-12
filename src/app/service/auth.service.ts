@@ -22,15 +22,19 @@ export class AuthService {
     return this.http.post<UsuarioLogin>('https://bloghistoriarte.herokuapp.com/usuarios/logar', usuarioLogin)
   }
 
-  getByIdUsuario(id:number):Observable<Usuario>{
+  getByIdUsuario(id: number): Observable<Usuario> {
     return this.http.get<Usuario>(`https://bloghistoriarte.herokuapp.com/usuarios/${id}`)
   }
- 
-  logado(){
+
+  recadastrar(usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>('https://bloghistoriarte.herokuapp.com/usuarios/atualizar', usuario)
+  }
+
+  logado() {
 
     let ok: boolean = false
 
-    if (environment.token != ''){
+    if (environment.token != '') {
       ok = true
     }
     return ok
