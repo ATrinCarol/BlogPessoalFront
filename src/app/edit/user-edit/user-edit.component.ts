@@ -22,18 +22,6 @@ export class UserEditComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router,
-
-
-  idUsuario: number
-  confirmSenha: string
-  tipoUsuaria: string
-
-
-
-  constructor(
-    private authService: AuthService,
-    private route: ActivatedRoute,
     private router: Router
 
   ) { }
@@ -51,8 +39,6 @@ export class UserEditComponent implements OnInit {
     }
 
     this.idUsuario = this.route.snapshot.params['id']
-
-    this.findByIdUser(this.idUsuario)
 
     this.findByIdUsuario(this.idUsuario)
 
@@ -101,19 +87,12 @@ export class UserEditComponent implements OnInit {
   //   }
   // }
 
-  findByIdUser(id: number) {
-
-        alert('Atualização realizada com sucesso!')
-      })
-    }
-
-  }
-
   findByIdUsuario(id: number) {
 
     this.authService.getByIdUsuario(id).subscribe((resp: Usuario) => {
       this.usuario = resp
     })
   }
+
 
 }
