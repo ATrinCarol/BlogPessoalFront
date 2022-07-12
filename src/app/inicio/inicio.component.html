@@ -34,8 +34,9 @@
       </li>
 
       <li class="nav-item" role="presentation">
-        <a class="nav-link text-dark font-weight-bold" id="pills-minhasLembranças-tab" data-toggle="pill"
-          href="#minhasLembranças" role="tab" aria-controls="pills-minhasLembranças" aria-selected="false">Minhas
+        <a (click)="findByIdUsuario()" class="nav-link text-dark font-weight-bold" id="pills-minhasLembranças-tab"
+          data-toggle="pill" href="#minhasLembranças" role="tab" aria-controls="pills-minhasLembranças"
+          aria-selected="false">Minhas
           lembranças</a>
       </li>
 
@@ -47,21 +48,61 @@
 
     </ul>
   </nav>
-  <div class="tab-content" id="pills-tabContent">
+  <div class="tab-content mt-5" id="pills-tabContent">
+
     <div class="tab-pane fade show active" id="todasLembranças" role="tabpanel"
       aria-labelledby="pills-todasLembranças-tab">
-      Todas as lembranças
+      <div class="card-columns">
+        <div class="card text-center" *ngFor='let i of listPostagem'>
+          <div class="card-body">
+            <h5 class="card-title m-0">{{i.titulo}}</h5>
+            <small class="text-muted">Tema: {{i.tema.descricao}}</small>
+            <p class="card-text mt-3">{{i.texto}}</p>
+            <p class="card-text"><small class="text-muted"> {{i.data | date: 'dd/MM/yyyy'}} às {{i.data | date:
+                'HH:mm'}}
+              </small></p>
+            <p class="card-text"><small class="text-muted"> By: {{i.usuario.nome}}
+              </small></p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="tab-pane fade" id="minhasLembranças" role="tabpanel" aria-labelledby="pills-minhasLembranças-tab">
-      Minhas lembranças
+      <div class="card-columns">
+        <div class="card text-center" *ngFor="let i of usuario.postagem">
+          <div class="card-body">
+            <h5 class="card-title m-0">{{i.titulo}}</h5>
+            <small class="text-muted">Tema: {{i.tema.descricao}}</small>
+            <p class="card-text mt-3">{{i.texto}}</p>
+            <p class="card-text"><small class="text-muted"> {{i.data | date: 'dd/MM/yyyy'}} às {{i.data | date:
+                'HH:mm'}}
+              </small></p>
+            <a [routerLink]="['/postagem-edit', i.id]" class="text-infor mr-3">Editar</a>
+            <a [routerLink]="['/postagem-delete', i.id]" class="text-danger">Apagar</a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="tab-pane fade" id="temaLembranças" role="tabpanel" aria-labelledby="pills-temaLembranças-tab">Lembranças
-      por tema</div>
+    <div class="tab-pane fade" id="temaLembranças" role="tabpanel" aria-labelledby="pills-temaLembranças-tab">
+      <div class="card-columns" *ngFor="let item of listTema">
+        <div class="card text-center" *ngFor="let i of item.postagem">
+          <div class="card-body">
+            <h5 class="card-title m-0">{{i.titulo}}</h5>
+            <p class="card-text mt-3">{{i.texto}}</p>
+            <p class="card-text"><small class="text-muted"> {{i.data | date: 'dd/MM/yyyy'}} às {{i.data | date:
+                'HH:mm'}}
+              </small></p>
+            <p class="card-text"><small class="text-muted"> By: {{i.usuario.nome}}
+              </small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
-</div>
-<!--Final das visualizações de postagens-->
+  <!--Final das visualizações de postagens-->
 
 
 
@@ -70,37 +111,43 @@
 
 
 
-<!--Começo do Modal-->
-<div class="modal fade" id="novaPostagem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nova Postagem</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="titulo">Título</label>
-          <input type="text" class="form-control" id="titulo" placeholder="Digite aqui o título da sua lembrança">
+  <!--Começo do Modal de Postagem-->
+  <div class="modal fade" id="novaPostagem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nova Postagem</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="form-group">
-          <label for="texto">Texto</label>
-          <textarea class="form-control" name="texto" id="texto" rows="3"></textarea>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="titulo">Título</label>
+            <input [(ngModel)]="postagem.titulo" type="text" class="form-control" id="titulo"
+              placeholder="Digite aqui o título da sua lembrança">
+          </div>
+          <div class="form-group">
+            <label for="texto">Texto</label>
+            <textarea [(ngModel)]="postagem.texto" class="form-control" name="texto" id="texto" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="titulo">Escolha um tema ou <a data-dismiss="modal" routerLink="/tema">cadastre um novo</a>
+            </label>
+            <select [(ngModel)]="idTema" (change)="findByIdTema()" class="form-control" name="tema" id="tema">
+              <option *ngFor="let i of listTema" value="{{i.id}}">
+                {{i.descricao}}
+              </option>
+            </select>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="titulo">Escolha um tema ou <a href="">cadastre um novo</a> </label>
-          <select class="form-control" name="tema" id="tema">
-            <option value="">Temas</option>
-          </select>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-purple text-light" data-dismiss="modal"
+            (click)="publicar()">Publicar</button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-purple text-light">Publicar</button>
       </div>
     </div>
   </div>
-</div>
-<!--Final Modal -->
+  <!--Final Modal -->

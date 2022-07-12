@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
@@ -22,6 +22,10 @@ export class AuthService {
     return this.http.post<UsuarioLogin>('https://bloghistoriarte.herokuapp.com/usuarios/logar', usuarioLogin)
   }
 
+  getByIdUsuario(id:number):Observable<Usuario>{
+    return this.http.get<Usuario>(`https://bloghistoriarte.herokuapp.com/usuarios/${id}`)
+  }
+ 
   logado(){
 
     let ok: boolean = false
