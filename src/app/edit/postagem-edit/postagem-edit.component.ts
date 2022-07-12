@@ -38,7 +38,7 @@ export class PostagemEditComponent implements OnInit {
 
     let id = this.route.snapshot.params['id']
     this.findByIdPostagem(id)
-    this.findAllTema
+    this.findAllTema()
   }
 
   findByIdPostagem(id: number){

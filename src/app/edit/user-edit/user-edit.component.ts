@@ -13,6 +13,7 @@ export class UserEditComponent implements OnInit {
 
   usuario: Usuario = new Usuario()
 
+
   idUsuario: number
 
   confirmSenha: string
@@ -23,6 +24,18 @@ export class UserEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
 
+
+  idUsuario: number
+  confirmSenha: string
+  tipoUsuaria: string
+
+
+
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
+
   ) { }
 
   ngOnInit() {
@@ -30,11 +43,19 @@ export class UserEditComponent implements OnInit {
     window.scroll(0, 0)
 
     if (environment.token == '') {
+
+
+      // alert ('Sua sessão expirou. Faça o login novamente!')
+
       this.router.navigate(['/entrar'])
     }
 
     this.idUsuario = this.route.snapshot.params['id']
+
     this.findByIdUser(this.idUsuario)
+
+    this.findByIdUsuario(this.idUsuario)
+
   }
 
   confirmarSenha(event: any) {
@@ -54,6 +75,7 @@ export class UserEditComponent implements OnInit {
       this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {
         this.usuario = resp
         this.router.navigate(['/inicio'])
+
         alert('Atualização realizada com sucesso! Faça o Login novamente!')
         environment.token = ''
         environment.nome = ''
@@ -80,6 +102,15 @@ export class UserEditComponent implements OnInit {
   // }
 
   findByIdUser(id: number) {
+
+        alert('Atualização realizada com sucesso!')
+      })
+    }
+
+  }
+
+  findByIdUsuario(id: number) {
+
     this.authService.getByIdUsuario(id).subscribe((resp: Usuario) => {
       this.usuario = resp
     })

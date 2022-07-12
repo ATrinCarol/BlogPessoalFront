@@ -21,6 +21,7 @@ const routes: Routes = [
 
   { path: 'tema-edit/:id', component: TemaEditComponent},
   { path: 'tema-delete/:id', component: TemaDeleteComponent},
+
   { path: 'tema-edit/descricao', component: TemaEditComponent},
 
   {path: 'postagem-edit/:id', component: PostagemEditComponent},
@@ -28,6 +29,13 @@ const routes: Routes = [
 
   {path: 'user-edit/:id', component: UserEditComponent}
 
+
+
+  { path: 'tema-edit/:descricao', component: TemaEditComponent},
+  {path: 'postagem-edit/:id', component: PostagemEditComponent},
+  {path: 'postagem-delete/:id', component: PostagemDeleteComponent},
+  {path: 'user-edit/:id', component: UserEditComponent}
+  
 
 ];
 
