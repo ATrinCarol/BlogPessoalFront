@@ -1,7 +1,7 @@
 #img-bg{
     background-image: url("https://i.imgur.com/kyOy7UI.png");
-    min-width: 395px;
-    min-height: 625px;
+    min-width: 70vh;
+    min-height: 100vh;
 }
 
 .bg-entrar{
@@ -12,7 +12,7 @@
 .btn-purple{
     background-color: purple;
 }
-
+ 
 a {
     color:black;
 }

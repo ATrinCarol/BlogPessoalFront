@@ -35,7 +35,7 @@ export class EntrarComponent implements OnInit {
       if(erro.status == 401){
         alert ('Email e/ou senha não coincidem. Digite corretamente!')
       }
-    })
+    }) 
   }
 
 }
