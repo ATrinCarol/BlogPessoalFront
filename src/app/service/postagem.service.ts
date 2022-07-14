@@ -20,9 +20,13 @@ export class PostagemService {
     return this.http.get<Postagem[]>('https://bloghistoriarte.herokuapp.com/postagens', this.token)
   }
 
-  getByIdPostagem(id: number): Observable<Postagem>{
+  getByIdPostagem(id: number): Observable<Postagem> {
     return this.http.get<Postagem>(`https://bloghistoriarte.herokuapp.com/postagens/${id}`, this.token)
-  } 
+  }
+
+  getByTituloPostagem(titulo: string): Observable<Postagem[]>{
+    return this.http.get<Postagem[]>(`https://bloghistoriarte.herokuapp.com/postagens/titulo/${titulo}`, this.token)
+  }
 
   postPostagem(postagem: Postagem): Observable<Postagem> {
     return this.http.post<Postagem>('https://bloghistoriarte.herokuapp.com/postagens', postagem, this.token)
@@ -32,7 +36,7 @@ export class PostagemService {
     return this.http.put<Postagem>('https://bloghistoriarte.herokuapp.com/postagens', postagem, this.token)
   }
 
-  deletePostagem(id:number){
+  deletePostagem(id: number) {
     return this.http.delete(`https://bloghistoriarte.herokuapp.com/postagens/${id}`, this.token)
   }
 

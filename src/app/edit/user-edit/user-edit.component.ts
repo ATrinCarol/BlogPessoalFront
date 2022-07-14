@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/model/Usuario';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -13,7 +14,6 @@ export class UserEditComponent implements OnInit {
 
   usuario: Usuario = new Usuario()
 
-
   idUsuario: number
 
   confirmSenha: string
@@ -22,7 +22,8 @@ export class UserEditComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private alertas: AlertasService,
 
   ) { }
 
@@ -31,17 +32,12 @@ export class UserEditComponent implements OnInit {
     window.scroll(0, 0)
 
     if (environment.token == '') {
-
-
-      // alert ('Sua sessão expirou. Faça o login novamente!')
-
+      this.alertas.showAlertDanger('Sua sessão expirou. Faça o login novamente!')
       this.router.navigate(['/entrar'])
     }
 
     this.idUsuario = this.route.snapshot.params['id']
-
-    this.findByIdUsuario(this.idUsuario)
-
+    this.findByIdUser(this.idUsuario)
   }
 
   confirmarSenha(event: any) {
@@ -56,13 +52,11 @@ export class UserEditComponent implements OnInit {
     this.usuario.tipo = this.tipoUsuaria
 
     if (this.usuario.senha != this.confirmSenha) {
-      alert('As senhas não coincidem. Digite corretamente!')
+      this.alertas.showAlertDanger('As senhas não coincidem. Digite corretamente!')
     } else {
-      this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {
+      this.authService.recadastrar(this.usuario).subscribe((resp: Usuario) => {
         this.usuario = resp
-        this.router.navigate(['/inicio'])
-
-        alert('Atualização realizada com sucesso! Faça o Login novamente!')
+        this.alertas.showAlertInfo('Atualização realizada com sucesso! Faça Login novamente!')
         environment.token = ''
         environment.nome = ''
         environment.foto = ''
@@ -71,28 +65,11 @@ export class UserEditComponent implements OnInit {
       })
     }
   }
-  //TENTATIVA DO USO PUT
-  // atualizar() {
-  //   this.usuario.id = this.idUsuario
-  //   this.usuario.tipo = this.tipoUsuaria
 
-  //   if (this.usuario.senha != this.confirmSenha) {
-  //     alert('As senhas não coincidem. Digite corretamente!')
-  //   } else {
-  //     this.authService.recadastrar(this.usuario).subscribe((resp: Usuario) => {
-  //       this.usuario = resp
-  //       alert('Atualização realizada com sucesso!')
-  //       this.router.navigate(['/inicio'])
-  //     })
-  //   }
-  // }
-
-  findByIdUsuario(id: number) {
-
+  findByIdUser(id: number) {
     this.authService.getByIdUsuario(id).subscribe((resp: Usuario) => {
       this.usuario = resp
     })
   }
-
 
 }
