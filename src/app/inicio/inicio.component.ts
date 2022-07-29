@@ -16,6 +16,10 @@ import { TemaService } from '../service/tema.service';
 })
 export class InicioComponent implements OnInit {
 
+  nome = environment.nome
+  foto = environment.foto
+  id = environment.id
+
   postagem: Postagem = new Postagem()
   listPostagem: Postagem[]
   tituloPost: string
@@ -35,7 +39,7 @@ export class InicioComponent implements OnInit {
     private router: Router,
     private postagemService: PostagemService,
     private temaService: TemaService,
-    private authService: AuthService,
+    public authService: AuthService, //estpu deixando como public para poder acessar ele no html
     private alertas: AlertasService,
 
   ) { }
@@ -44,6 +48,9 @@ export class InicioComponent implements OnInit {
 
     window.scroll(0, 0)
 
+    this.validarFoto()
+
+
     if (environment.token == '') {
       this.alertas.showAlertDanger('Sua sessão expirou. Faça o login novamente!')
       this.router.navigate(['/entrar'])
@@ -51,6 +58,12 @@ export class InicioComponent implements OnInit {
 
     this.findAllTema()
     this.findAllPostagem()
+  }
+
+  validarFoto(){
+    if (environment.foto == ''){
+      this.foto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'
+    }
   }
 
   findAllTema() {

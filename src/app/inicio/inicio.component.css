@@ -13,3 +13,15 @@
 .btn-purple{
     background-color: purple;
 } 
+
+.bedit{
+    color: #800080;
+}
+
+.bedit:hover{
+    color:rgb(121, 34, 202)
+}
+
+.nav-link.active{
+    background-color: #bd62bd !important;
+}
