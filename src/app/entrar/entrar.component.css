@@ -1,22 +1,23 @@
-#img-bg{
+#img-bg {
     background-image: url("https://i.imgur.com/kyOy7UI.png");
     min-width: 70vh;
     min-height: 100vh;
 }
 
-.bg-entrar{
-    background-image: url('https://i.imgur.com/fLg9REf.png');
-    margin-top:0px;
+.bg-entrar {
+    background: rgb(66, 11, 91);
+    background: linear-gradient(90deg, rgba(66, 11, 91, 1) 11%, rgba(142, 48, 118, 1) 52%, rgba(135, 48, 142, 1) 100%);
+    margin-top: 0px;
 }
 
-.btn-purple{
+.btn-purple {
     background-color: purple;
 }
- 
+
 a {
-    color:black;
-}
-a:hover{
-    color: purple;
+    color: black;
 }
 
+a:hover {
+    color: purple;
+}
