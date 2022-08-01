@@ -15,3 +15,9 @@ html{
 .text-purple{
     color: #800080;
 }
+
+.card{
+    border-color: #800080 !important;
+    border-radius: 10px !important;
+    border-width: 5px !important;
+}
